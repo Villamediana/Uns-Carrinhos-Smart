@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>carrinho · nn</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+</head>
+<body>
+  <main class="app">
+    <header class="topbar">
+      <div class="brand">
+        <span class="dot"></span>
+        <span class="name">carrinho · nn</span>
+      </div>
+      <div class="stats">
+        <div class="stat"><span class="k">geração</span><span class="v" id="stat-gen">1</span></div>
+        <div class="stat"><span class="k">viva</span><span class="v" id="stat-alive">0</span></div>
+        <div class="stat"><span class="k">melhor</span><span class="v" id="stat-best">0</span></div>
+        <div class="stat"><span class="k">média</span><span class="v" id="stat-avg">0</span></div>
+        <div class="stat"><span class="k">prox</span><span class="v" id="stat-timer">0s</span></div>
+      </div>
+    </header>
+
+    <section class="stage">
+      <div class="panel panel-track">
+        <div class="panel-head">
+          <span class="title">pista</span>
+          <div class="tracks" id="track-picker"></div>
+        </div>
+        <canvas id="track-canvas" width="720" height="590"></canvas>
+      </div>
+
+      <div class="stage-right">
+        <div class="panel panel-net">
+          <div class="panel-head">
+            <span class="title">rede neural</span>
+            <span class="sub" id="net-sub">líder</span>
+          </div>
+          <canvas id="net-canvas" width="440" height="320"></canvas>
+        </div>
+
+        <div class="panel panel-chart">
+          <div class="panel-head">
+            <span class="title">curva de aprendizado</span>
+            <span class="sub" id="chart-sub">melhor e média por geração</span>
+          </div>
+          <canvas id="chart-canvas" width="440" height="200"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <section class="controls">
+      <button class="btn" id="btn-pause">pausar</button>
+      <button class="btn ghost" id="btn-reset">reset</button>
+      <button class="btn toggle" id="btn-train">treinar no server</button>
+      <div class="slider">
+        <label>velocidade</label>
+        <input type="range" id="speed" min="1" max="50" value="2" />
+      </div>
+      <div class="slider">
+        <label>população</label>
+        <input type="range" id="pop" min="10" max="500" value="40" step="10" />
+      </div>
+      <div class="slider">
+        <label>mutação</label>
+        <input type="range" id="mut" min="1" max="30" value="8" />
+      </div>
+    </section>
+  </main>
+
+  <div class="toast" id="toast">
+    <div class="toast-title">treino concluído</div>
+    <div class="toast-row"><span>gerações</span><span class="v" id="toast-gens">0</span></div>
+    <div class="toast-row"><span>melhor</span><span class="v" id="toast-best">0</span></div>
+    <div class="toast-row"><span>tempo</span><span class="v" id="toast-time">0s</span></div>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/nn.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/tracks.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/car.js') }}"></script>
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+</body>
+</html>
