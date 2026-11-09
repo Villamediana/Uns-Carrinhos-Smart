@@ -103,4 +103,5 @@ def set_training():
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5055, debug=True)
+    # O debugger do Flask executa código pelo navegador: só liga com FLASK_DEBUG=1.
+    app.run(host="0.0.0.0", port=5055, debug=os.environ.get("FLASK_DEBUG") == "1")
